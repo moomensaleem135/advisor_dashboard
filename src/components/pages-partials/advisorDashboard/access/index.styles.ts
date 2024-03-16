@@ -12,7 +12,7 @@ export const Main = styled(Box)`
 `;
 
 export const Container = styled(Box)`
-  max-width: 40%;
+  width: 50%;
   padding: 3rem 6rem;
 
   border: 1px solid lightgray;

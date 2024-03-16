@@ -12,41 +12,10 @@ import {
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-
-import BasicMenu from '../../../components/core/Menu';
 import { IconsDiv, Li, LogoDiv, MainContainer, UlDiv } from './index.styles';
 
 const NavBar = () => {
   const router = useRouter();
-  const handleMenuItemClick = (item: string) => {
-    if (item === 'Calendar') {
-      router.push('/tools/calendar');
-    } else if (item === 'Model Documents') {
-      router.push('/tools/modeldocuments');
-    } else if (item === 'Annual Compliance Review') {
-      router.push('/tools/annualreviewtool');
-    } else if (item === 'Cybersecurity Hub') {
-      router.push('/tools/cybersecurity');
-    } else if (item === 'Employees') {
-      router.push('/administration/employees');
-    } else if (item === 'Clients') {
-      router.push('/administration/clients');
-    } else if (item === 'Tasks') {
-      router.push('/administration/tasks');
-    } else if (item === 'My Policies') {
-      router.push('/policies/my-policies');
-    } else if (item === 'Create New') {
-      router.push('/policies/create-new-policies');
-    } else if (item === 'Reports') {
-      router.push('/administration/reports');
-    } else if (item === 'Archive') {
-      router.push('/administration/archive');
-    } else if (item === 'Onboarding') {
-      router.push('/tools/onboarding');
-    } else if (item === 'Mock Exam') {
-      router.push('/tools/mockExam');
-    }
-  };
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -152,35 +121,6 @@ const NavBar = () => {
           Logout
         </MenuItem>
       </Menu>
-      <UlDiv
-      // style={{ border: '1px solid red' }}
-      >
-        <Li onClick={() => router.push('/home')}>Home</Li>
-        <BasicMenu
-          buttonTitle="Tools"
-          menuItems={[
-            'Calendar',
-            'Onboarding',
-            'Model Documents',
-            'Annual Compliance Review',
-            'Cybersecurity Hub',
-            'Mock Exam'
-          ]}
-          onItemClick={handleMenuItemClick}
-        />
-        <Li onClick={() => router.push('/request')}>Requests</Li>
-        <BasicMenu
-          buttonTitle="Policies"
-          menuItems={['My Policies', 'Create New']}
-          onItemClick={handleMenuItemClick}
-        />
-        <BasicMenu
-          buttonTitle="Administration"
-          menuItems={['Tasks', 'Employees', 'Clients', 'Archive', 'Reports']}
-          onItemClick={handleMenuItemClick}
-        />
-        <Li onClick={() => router.push('/insights')}>Insights</Li>
-      </UlDiv>
     </MainContainer>
   );
 };

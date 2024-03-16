@@ -49,7 +49,7 @@ export default function Login() {
   }, [error]);
 
   if (isAuthenticated === true && !isNavigated) {
-    router.push('/home');
+    router.push('/advisor_dashboard');
   }
 
   return (

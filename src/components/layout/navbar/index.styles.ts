@@ -55,7 +55,7 @@ export const MainContainer = styled.div`
   align-items: space-arround;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   background-color: white;
-  padding: 0 40px;
+  padding: 15px 40px;
   height: 11%;
 `;
 

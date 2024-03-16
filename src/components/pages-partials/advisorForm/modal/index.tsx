@@ -2,7 +2,7 @@ import { COLORS } from '@/constants/colors';
 import styled from '@emotion/styled';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import Button from '@/components/core/Button';
 
@@ -51,6 +51,10 @@ const StyledTypography = styled(Typography)``;
 const StyledText = styled(Typography)`
   font-weight: 800;
 `;
+const StyledDateText = styled(Typography)`
+  font-weight: 800;
+  margin-right: 3.1rem;
+`;
 
 const UnderlineContainer = styled(Box)``;
 const StyledButton = styled(Button)`
@@ -60,14 +64,25 @@ const StyledButton = styled(Button)`
   font-size: 1em;
   background-color: ${COLORS.BLUE_200};
 `;
+
+const ButtonStyled = styled(Button)`
+  margin-top: 1rem;
+  padding: 0.3rem 0.5rem;
+  font-size: 1em;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+`;
 const ButtonDiv = styled(Box)`
   width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
 `;
 
 const Modal = ({ isOpen, onClose }: any) => {
   const [isApproved, setApproved] = useState(false);
+  const [imageSrc, setImageSrc] = useState('/svgs/sign.svg'); // Initial image source
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleCheck = () => {
     setApproved(true);
@@ -77,12 +92,27 @@ const Modal = ({ isOpen, onClose }: any) => {
     event.preventDefault();
     onClose(true);
   };
+
   if (!isOpen) return null;
   const currentDate = new Date();
   const formattedDate = `${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${currentDate
     .getDate()
     .toString()
     .padStart(2, '0')}/${currentDate.getFullYear()}`;
+
+  const handleButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files && event.target.files[0];
+    if (selectedFile) {
+      const imageUrl = URL.createObjectURL(selectedFile);
+      setImageSrc(imageUrl); 
+    }
+  };
 
   return (
     <ModalOverlay>
@@ -101,17 +131,10 @@ const Modal = ({ isOpen, onClose }: any) => {
           </p>
         </Box>
         <hr />
-        <StyledImage src="/svgs/sign.svg" height={100} width={100} alt="" />
+        <StyledImage src={imageSrc} height={100} width={100} alt="" /> 
         <hr />
         <FlexDiv>
-          <Box sx={{ display: 'flex', flexDirection: 'row' }} onClick={handleCheck}>
-            <Box sx={{ marginTop: '0.3rem' }}>
-              {isApproved ? (
-                <Icon src="/svgs/check.svg" height={15} width={15} alt="" />
-              ) : (
-                <Icon src="/svgs/check.svg" height={15} width={15} alt="" />
-              )}
-            </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'row' }} >
             <StyledTypography style={{ color: isApproved ? 'green' : 'black', cursor: 'pointer' }}>
               {isApproved ? 'Approved' : 'Click to Approve Signature'}
               <hr />
@@ -124,10 +147,17 @@ const Modal = ({ isOpen, onClose }: any) => {
         </FlexDiv>
         <FlexDiv>
           <StyledText>Signature</StyledText>
-          <StyledText>Date</StyledText>
+          <StyledDateText>Date</StyledDateText>
         </FlexDiv>
         <ButtonDiv>
-          <StyledButton type="submit">Approved</StyledButton>
+          <ButtonStyled onClick={handleButtonClick}>Upload Signature</ButtonStyled>
+          <input 
+            type="file" 
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            style={{display:'none'}}
+          />
+          <StyledButton onClick={handleCheck}>Approved</StyledButton>
         </ButtonDiv>
       </ModalContent>
     </ModalOverlay>

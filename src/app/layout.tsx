@@ -8,7 +8,7 @@ import ProtectedRoute from '@/components/protectedRoute';
 import { MainProvider } from '@/components/providers/MainProvider';
 
 export const metadata: Metadata = {
-  title: 'SecureRIA CCO',
+  title: 'SecureRIA Advisor DashBoard',
   description: '🚀'
 };
 

@@ -5,6 +5,7 @@ import { Box } from '@mui/material';
 import Button from '@/components/core/Button';
 
 export const Container = styled(Box)`
+width: 50%;
   padding: 3rem 3rem;
   border: 1px solid lightgray;
 `;
@@ -16,7 +17,7 @@ export const Title = styled.label`
 
 export const StyledInput = styled.input`
   border: 1px solid lightgray;
-  width: 70%;
+  width: 85%;
   padding: 0.7rem 0.5rem;
   font-size: 1em;
   display: inline;
@@ -54,7 +55,8 @@ export const StyledInput = styled.input`
 export const StyledButton = styled(Button)`
   padding: 0.5rem;
   font-size: 0.8em;
-  width: 100%;
-  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: ${COLORS.BLUE_200};
 `;

@@ -1,12 +1,10 @@
 'use client';
 import { Box } from '@mui/material';
 import React, { ChangeEvent, useState } from 'react';
-
-import { LinkStyle } from '@/components/reviewCard/index.styles';
-
 import { Heading, Main } from '../access/index.styles';
 import { StyledButton, Title } from '../phone/index.styles';
 import { Container, OtpInput } from './index.styles';
+import { useRouter } from 'next/navigation';
 
 const Otp = () => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -18,6 +16,10 @@ const Otp = () => {
     newOtp[index] = singleDigitValue;
     setOtp(newOtp);
   };
+const router = useRouter()
+  const navigation = () => {
+router.push('/advisor_dashboard/messagecenter')
+  }
 
   return (
     <Main>
@@ -38,9 +40,7 @@ const Otp = () => {
               onChange={(e) => handleOtpChange(index, e)}
             />
           ))}
-          <LinkStyle href="/advisor_dashboard/messagecenter">
-            <StyledButton>Submit Code</StyledButton>
-          </LinkStyle>
+            <StyledButton onClick={navigation} >Submit Code</StyledButton>
         </Box>
       </Container>
     </Main>
