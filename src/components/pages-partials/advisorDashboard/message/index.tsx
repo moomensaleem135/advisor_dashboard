@@ -4,8 +4,11 @@ import React from 'react';
 
 import { LinkStyle } from '@/components/reviewCard/index.styles';
 
-import { FlexDiv, Heading, Main, StyledButton } from './index.styles';
+import { BackText, FlexDiv, Heading, Main, StyledButton } from './index.styles';
 import DataGridTable from './table';
+import { Box } from '@mui/material';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const initialRows = [
   { id: 1, date: '4/1/2023', activity: 'Personal Security Report', due: '5/1/2023' },
@@ -38,9 +41,16 @@ const columns = [
 
 const MessageCenter = () => {
   const buttons = ['Message Center', 'Make a Request', 'Task', 'Training'];
-
+  const router = useRouter()
+  const navigation = () => {
+router.push('/advisor_dashboard/otp')
+  }
   return (
     <Main>
+      <Box sx={{display:'flex', cursor:'pointer'}} onClick={navigation} >
+        <Image src="/svgs/goback.svg" height={30} width={25} alt='' />
+        <BackText>Back</BackText>
+      </Box>
       <Heading>Your Compliance Requests</Heading>
       <FlexDiv>
         {buttons.map((button, index) => (

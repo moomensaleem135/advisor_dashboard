@@ -2,13 +2,22 @@ import { COLORS } from '@/constants/colors';
 import styled from '@emotion/styled';
 import { Box, Typography } from '@mui/material';
 import { CSSProperties, ReactNode } from 'react';
-
 import Button from '@/components/core/Button';
+import Image from 'next/image';
 
 interface IButtonProps {
   children: ReactNode;
   style?: CSSProperties;
 }
+
+export const BackText = styled(Typography)`
+color: ${COLORS.BLUE_600};
+font-size: 1.2em;
+`
+
+export const BackIcon = styled(Image)`
+
+`
 
 export const Main = styled(Box)`
   width: 70rem;

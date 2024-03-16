@@ -1,12 +1,12 @@
 'use client';
 import { COLORS } from '@/constants/colors';
 import { Box } from '@mui/material';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useRef, useState } from 'react';
 
 import { LinkStyle } from '@/components/reviewCard/index.styles';
 
-import { FlexDiv, Heading, Main, StyledButton } from '../../message/index.styles';
+import { BackText, FlexDiv, Heading, Main, StyledButton } from '../../message/index.styles';
 import { StyledTopics } from '../../task/meeting/index.styles';
 import SharedLayout from '../../task/sharedLayout';
 import {
@@ -17,6 +17,7 @@ import {
   StyledText,
   Title
 } from './index.styles';
+import Image from 'next/image';
 
 const Letter = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -35,8 +36,17 @@ const Letter = () => {
   };
   const buttons = ['Message Center', 'Make a Request', 'Tasks', 'Training'];
 
+  const router = useRouter();
+  const navigation = () => {
+    router.push('/advisor_dashboard/makearequest');
+  };
+
   return (
     <Main>
+      <Box sx={{ display: 'flex', cursor: 'pointer' }} onClick={navigation}>
+        <Image src="/svgs/goback.svg" height={30} width={25} alt="" />
+        <BackText>Back</BackText>
+      </Box>
       <Heading>Your Compliance Requests</Heading>
       <FlexDiv>
         {buttons.map((button, index) => (

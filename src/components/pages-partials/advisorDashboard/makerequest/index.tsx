@@ -5,8 +5,11 @@ import { Theme } from 'react-toastify';
 
 import { LinkStyle } from '@/components/reviewCard/index.styles';
 
-import { FlexDiv, Heading, Main, StyledButton } from '../message/index.styles';
+import { BackText, FlexDiv, Heading, Main, StyledButton } from '../message/index.styles';
 import { ButtonDiv, HeadingStyled, MainStyled, StyledBtn, Table } from './index.styles';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { Box } from '@mui/material';
 
 const MakeRequest = () => {
   const buttons = [
@@ -23,8 +26,17 @@ const MakeRequest = () => {
   ];
   const btns = ['Message Center', 'Make a Request', 'Tasks', 'Training'];
 
+  const router = useRouter();
+  const navigation = () => {
+    router.push('/advisor_dashboard/messagecenter');
+  };
+
   return (
     <Main>
+      <Box sx={{ display: 'flex', cursor: 'pointer' }} onClick={navigation}>
+        <Image src="/svgs/goback.svg" height={30} width={25} alt="" />
+        <BackText>Back</BackText>
+      </Box>
       <Heading>Your Compliance Requests</Heading>
       <FlexDiv>
         {btns.map((button, index) => (

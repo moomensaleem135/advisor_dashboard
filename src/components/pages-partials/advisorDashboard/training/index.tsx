@@ -29,6 +29,8 @@ import {
   TextDiv,
   Title
 } from './index.styles';
+import { useRouter } from 'next/navigation';
+import { BackText } from '../message/index.styles';
 
 const Training = () => {
   const [showAdditionalContent, setShowAdditionalContent] = React.useState<number | null>(null);
@@ -46,8 +48,17 @@ const Training = () => {
     'Tips while Traveling'
   ];
 
+  const router = useRouter();
+  const navigation = () => {
+    router.push('/advisor_dashboard/messagecenter');
+  };
+
   return (
     <Main>
+      <Box sx={{ display: 'flex', cursor: 'pointer' }} onClick={navigation}>
+      <Image src="/svgs/goback.svg" height={30} width={25} alt='' />
+        <BackText>Back</BackText>
+      </Box>
       <Heading>Your Compliance Requests</Heading>
       <FlexDiv>
         {buttons.map((button, index) => (

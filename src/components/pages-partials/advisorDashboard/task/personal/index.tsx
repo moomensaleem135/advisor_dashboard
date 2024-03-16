@@ -28,6 +28,7 @@ import {
   TableHeader,
   TableRow
 } from './index.styles';
+import SharedLayout from '../sharedLayout';
 
 const initialValues = {
   title: '',
@@ -87,25 +88,12 @@ const Task1 = () => {
   };
 
   return (
+    <SharedLayout>
     <Main>
-      <Heading>Your Compliance Requests</Heading>
-      <FlexDiv>
-        {buttons.map((button, index) => (
-          <StyledButton
-            key={index}
-            style={{
-              backgroundColor: button === 'Tasks' ? `${COLORS.BLUE_600}` : 'default-color',
-              color: button === 'Tasks' ? `${COLORS.WHITE_100}` : 'default-color'
-            }}
-          >
-            {button}
-          </StyledButton>
-        ))}
-      </FlexDiv>
       <FormDiv>
         <StyledForm onSubmit={formik.handleSubmit}>
           <FormHeading>Personal Security Report</FormHeading>
-          <SubHeading>Description</SubHeading>
+          <SubHeading>Please complete the form below and include all security projects from pervious cover. </SubHeading>
           <FlexBox>
             <InputWrap>
               <StyledInputLabel>Title:</StyledInputLabel>
@@ -129,7 +117,7 @@ const Task1 = () => {
             </InputWrap>
           </FlexBox>
           <RadioDiv>
-            <InputLabel variant="standard">Quarter Ending</InputLabel>
+            <InputLabel variant="standard">Quarter Ending:</InputLabel>
             <Box sx={{ display: 'flex' }}>
               {checkboxLabels.map((label, index) => (
                 <FormControlLabel
@@ -160,7 +148,7 @@ const Task1 = () => {
             </Box>
           </RadioDiv>
           <RadioDiv>
-            <InputLabel variant="standard">I have purchased securities</InputLabel>
+            <InputLabel variant="standard">I have purchased securities:</InputLabel>
             <Box sx={{ display: 'flex' }}>
               {securityCheckbox.map((label, index) => (
                 <FormControlLabel
@@ -238,6 +226,7 @@ const Task1 = () => {
         </StyledForm>
       </FormDiv>
     </Main>
+    </SharedLayout>
   );
 };
 
