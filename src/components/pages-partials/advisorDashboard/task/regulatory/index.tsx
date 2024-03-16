@@ -46,7 +46,6 @@ const Regulatory = () => {
             questions or comments regarding the material.
           </StyledText>
           <FlexBox>
-            {' '}
             <StyledText>Bryan CCO</StyledText>{' '}
             <Image src="/svgs/pdfdoc.svg" width={30} height={30} alt="" />
           </FlexBox>

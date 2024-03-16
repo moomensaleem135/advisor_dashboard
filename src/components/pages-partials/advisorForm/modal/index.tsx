@@ -23,7 +23,7 @@ const ModalContent = styled.div`
   background: white;
   padding: 20px;
   border-radius: 8px;
-  width: 40%;
+  width: 30%;
   line-height: 0;
 `;
 const Heading = styled(Typography)`
